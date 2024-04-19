@@ -18,7 +18,7 @@ set -e
 check_command() {
     if [ ! -z $TERMUX_VERSION ]; then
         if ! command -v qemu-system-x86_64 &> /dev/null; then
-            pkg install qemu-system-x86-64-headless jq wget -y
+            pkg install qemu-system-x86-64-headless qemu-utils jq wget -y
         fi
     else
         distro=$(cat /etc/os-release | grep '^ID=' | cut -d'=' -f2 | tr -d '"')
