@@ -15,7 +15,7 @@ set -e
 
 # ADAPTS to termux and other linux
 # 适配termux和其他Linux
-if [ ! -n $TERMUX_VERSION ]; then
+if [ ! -z $TERMUX_VERSION ]; then
     package_manager="pkg"
 else
     distro=$(cat /etc/os-release | grep '^ID=' | cut -d'=' -f2 | tr -d '"')
