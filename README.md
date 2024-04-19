@@ -14,8 +14,7 @@
 ### 安装vbn
 #### 1. Termux
 ```
-wget --no-check-certificate -O $PREFIX/bin/vbn "https://hub.gitmirror.com/https://raw.githubusercontent.com/HG-ha/Termux_virts/main/vbn"
-chmod +x $PREFIX/bin/vbn
+pkg install wget -y && wget --no-check-certificate -O $PREFIX/bin/vbn "https://hub.gitmirror.com/https://raw.githubusercontent.com/HG-ha/Termux_virts/main/vbn" && chmod +x $PREFIX/bin/vbn
 ```
 #### 2. 其他Linux
 ```
