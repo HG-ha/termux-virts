@@ -283,6 +283,7 @@ info:
         # 启动指定虚拟机
         if [ -n "$2" ]; then
             if echo ${vmlist} | jq -e ".${2}" > /dev/null; then
+                check_command "qemu-system-x86_64"
                 # Check whether the VM file exists
                 # 检查是否存在虚拟机文件
                 vm_file=`echo ${vmlist} | jq -r ".${2}.filename"`
@@ -313,7 +314,7 @@ start:
         # 自定义启动指定虚拟机
         if [ -n "$2" ]; then
             if echo ${vmlist} | jq -e ".${2}" > /dev/null; then
-                
+                check_command "qemu-system-x86_64"
                 # Check whether the VM file exists
                 # 检查是否存在虚拟机文件
                 vm_file=`echo ${vmlist} | jq -r ".${2}.filename"`
@@ -403,6 +404,7 @@ status:
     "snapshot")
         # Vm snapshot management
         # 虚拟机快照管理
+        check_command "qemu-system-x86_64"
         case ${2} in
             "a")
                 # Adding a snapshot
