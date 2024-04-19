@@ -88,3 +88,16 @@ chmod +x /usr/bin/vbn
     环境配置：已配置官方源，网卡dhcp模式
     备注：开机后使用bt 3命令运行宝塔，若要在该版本上安装docker，使用命令：apk add docker docker-compose
    ```
+6. docker_alpine-3.18.0-x86_64.qcow2
+   ```
+    使用镜像：alpine-virt-3.18.0-x86_64.iso
+    软件包：默认, docker
+    系统设计容量：20G
+    实际大小：368M
+    语言：
+    用户名：root
+    密码：alpine
+    环境配置：已配置官方源，网卡dhcp模式，安装了docker
+    备注：
+    推荐启动命令：qemu-system-x86_64 -m 1G -hda alpine-3.19.1-x86_64.qcow2 -nographic -netdev user,id=n1,hostfwd=tcp::18022-:22 -device virtio-net,netdev=n1
+   ```
