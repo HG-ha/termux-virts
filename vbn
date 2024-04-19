@@ -3,7 +3,7 @@
 # Description: It is used to manage VMS.                              #
 # Author: Yi ming                                                     #
 # Date: April 18, 2024                                                #
-# Version: 1.0                                                        #
+# Version: 0.1                                                        #
 # Home: api.wer.plus                                                  #
 # Github: github.com/HG-ha                                            #
 # QQ Group: 376957298                                                 #
@@ -38,6 +38,7 @@ fi
 
 # github domestic proxy
 github_proxy="https://hub.gitmirror.com/"
+vbn_download_url="https://raw.githubusercontent.com/HG-ha/Termux_virts/main/vbn"
 
 # Virtual machine list
 # 存储虚拟机的信息
@@ -437,9 +438,6 @@ Specify the virtual machine you want to view
                         vm_file_exits ${vm_file}
                         check_command "qemu-img"
                         qemu-img snapshot -l "${HOME}/.vbn_vms/${vm_file}"
-                        # if [ -n "${comm}" ]; then
-                        #     echo -e "\033[32mNo snapshot is created for the current VM\033[0m"
-                        # fi
                     else
                         echo -e "
         \033[33mThe VM is out of range
@@ -457,8 +455,28 @@ Specify the virtual machine you want to view
                 ;;
         esac
         ;;
-    update)
-
+    "update")
+        check_command "wget"
+        if ! command -v "vbn" &> /dev/null; then
+            echo -e "\033[33mvbn instruction path not found\033[0m"
+            exit 1
+        fi
+        echo -e "\033[32mDownload new script\033[0m"
+        wget -O update_vbn_cache.sh --no-check-certificate -q ${github_proxy}${vbn_download_url}
+        vbn_path=`command -v "vbn"`
+        if diff -q update_vbn_cache.sh "${vbn_path}" >/dev/null; then
+            echo -e "\033[32mNo updated content, exit...\033[0m"
+            exit 0
+        else
+            mv update_vbn_cache.sh ${vbn_path}
+            chmod +x ${vbn_path}
+            echo -e "\033[32mupdate completed\033[0m"
+            # 在这里继续执行其他操作
+        fi
+        # echo ${diff_res}
+        ;;
+    "version")
+        echo "Version: 0.1"
         ;;
     *)
         echo "It's something else."
