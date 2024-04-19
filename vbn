@@ -25,17 +25,20 @@ check_command() {
         case "$distro" in
             "ubuntu" | "debian")
                 if ! command -v qemu-system-x86_64 &> /dev/null; then
-                    apt install qemu jq wget -y
+                    echo "Please manually install qemu-system-x86 64 and then use it"
+                    exit 1
                 fi
                 ;;
             "centos" | "rhel")
                 if ! command -v qemu-system-x86_64 &> /dev/null; then
-                    yum install qemu jq wget -y
+                    echo "Please manually install qemu-system-x86 64 and then use it"
+                    exit 1
                 fi
                 ;;
             "alpine")
                 if ! command -v qemu-system-x86_64 &> /dev/null; then
-                    apk add qemu jq wget -y
+                    echo "Please manually install qemu-system-x86 64 and then use it"
+                    exit 1
                 fi
                 ;;
             *)
