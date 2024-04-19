@@ -282,6 +282,35 @@ start:
 "
         fi
         ;;
+    "estart")
+        # Start a custom VM
+        # 自定义启动指定虚拟机
+        if [ -n "$2" ]; then
+            if echo ${vmlist} | jq -e ".${2}" > /dev/null; then
+                
+                # Check whether the VM file exists
+                # 检查是否存在虚拟机文件
+                vm_file=`echo ${vmlist} | jq -r ".${2}.filename"`
+                vm_file_exits ${vm_file}
+                start_vm=`echo ${vmlist} | jq -r ".${2}.custom_command"`
+                shift 2
+                all_arguments="$@"
+                eval ${start_vm} ${all_arguments}
+            else
+                echo -e "
+\033[33mThe VM is out of range
+虚拟机不在支持范围内\033[0m"
+            fi
+        else
+            echo -e "
+Specify the virtual machine you want to start
+请指定要启动的虚拟机和其他自定义参数
+
+start:
+    vbn estart [name] [params...]
+"
+        fi
+        ;;
     "stop")
         # Kill the VM process directly. Some operations may not be saved
         # 直接杀死虚拟机进程，有些操作可能会无法保存
@@ -541,6 +570,11 @@ usage: vbn [option] [params...]
                   启动指定虚拟机
 
                   usage: vbn start [name|虚拟机名称]
+
+        estart  : Start a custom VM
+                  自定义参数启动指定虚拟机
+
+                  usage: vbn estart [name|虚拟机名称] [params...]
         
         stop    : Kill a virtual machine
                   杀死虚拟机
