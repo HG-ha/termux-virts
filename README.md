@@ -12,6 +12,7 @@ chmod +x $PREFIX/bin/vbn
 ```
 #### 2. 其他Linux
 ```
+# 按照对应平台方法安装qemu，jq，wget命令后再使用
 wget --no-check-certificate -O /usr/bin/vbn "https://hub.gitmirror.com/https://raw.githubusercontent.com/HG-ha/Termux_virts/main/vbn"
 chmod +x /usr/bin/vbn
 ```
