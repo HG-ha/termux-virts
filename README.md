@@ -7,12 +7,12 @@
 ### 安装
 #### 1. Termux
 ```
-wget -O $PREFIX/bin/vbn "https://hub.gitmirror.com/https://raw.githubusercontent.com/HG-ha/Termux_virts/main/vbn"
+wget --no-check-certificate -O $PREFIX/bin/vbn "https://hub.gitmirror.com/https://raw.githubusercontent.com/HG-ha/Termux_virts/main/vbn"
 chmod +x $PREFIX/bin/vbn
 ```
 #### 2. 其他Linux
 ```
-wget -O /usr/bin/vbn "https://hub.gitmirror.com/https://raw.githubusercontent.com/HG-ha/Termux_virts/main/vbn"
+wget --no-check-certificate -O /usr/bin/vbn "https://hub.gitmirror.com/https://raw.githubusercontent.com/HG-ha/Termux_virts/main/vbn"
 chmod +x /usr/bin/vbn
 ```
 
