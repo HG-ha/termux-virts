@@ -10,7 +10,7 @@
 3. 为虚拟机创建初始快照，方便随时恢复到初始环境
 4. 开始使用虚拟机
 
-### 安装
+### 安装vbn
 #### 1. Termux
 ```
 wget --no-check-certificate -O $PREFIX/bin/vbn "https://hub.gitmirror.com/https://raw.githubusercontent.com/HG-ha/Termux_virts/main/vbn"
