@@ -37,7 +37,7 @@ else
 fi
 
 # install qemu
-eval ${package_manager} qemu-system-x86_64
+eval ${package_manager} qemu-system-x86_64*
 
 # github domestic proxy
 github_proxy="https://hub.gitmirror.com/"
