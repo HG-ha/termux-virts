@@ -16,18 +16,34 @@ set -e
 # ADAPTS to termux and other linux
 # 适配termux和其他Linux
 if [ ! -z $TERMUX_VERSION ]; then
-    package_manager="pkg"
+    for cmd in qemu-system-x86_64 jq wget; do
+        if ! command -v $cmd &> /dev/null; then
+            pkg install ${cmd} -y
+        fi
+    done
 else
     distro=$(cat /etc/os-release | grep '^ID=' | cut -d'=' -f2 | tr -d '"')
     case "$distro" in
         "ubuntu" | "debian")
-            package_manager="apt install -y"
+            for cmd in qemu-system-x86_64 jq wget; do
+                if ! command -v $cmd &> /dev/null; then
+                    apt install ${cmd} -y
+                fi
+            done
             ;;
         "centos" | "rhel")
-            package_manager="yum install -y"
+            for cmd in qemu-system-x86_64 jq wget; do
+                if ! command -v $cmd &> /dev/null; then
+                    yum install ${cmd} -y
+                fi
+            done
             ;;
         "alpine")
-            package_manager="apk add"
+            for cmd in qemu-system-x86_64 jq wget; do
+                if ! command -v $cmd &> /dev/null; then
+                    apk add ${cmd}
+                fi
+            done
             ;;
         *)
             echo "For Linux that is not supported, please manually install dependencies: jq, wget"
@@ -35,9 +51,6 @@ else
             ;;
     esac
 fi
-
-# install qemu
-eval ${package_manager} qemu-system-x86_64*
 
 # github domestic proxy
 github_proxy="https://hub.gitmirror.com/"
@@ -124,16 +137,6 @@ vmlist='{
     }
 }'
 
-# Check and install
-# 检查并自动安装命令
-check_command() {
-    if ! command -v "${1}" &> /dev/null; then
-        echo "install : ${1}"
-        eval ${package_manager} ${1}
-        echo -e "\n\n\n"
-    fi
-}
-
 # Inspector directory
 # 检查家目录
 check_home_dir(){
@@ -154,7 +157,6 @@ vm_file_exits() {
 # Obtain all supported VMS
 # 获取所有支持的虚拟机
 get_vms() {
-    check_command "jq"
     vm_list=`echo ${vmlist} | jq -r "keys[]"`
     echo -e "\033[31mVM list:\033[0m"
     for vm_name in $vm_list
@@ -286,7 +288,6 @@ info:
         # 启动指定虚拟机
         if [ -n "$2" ]; then
             if echo ${vmlist} | jq -e ".${2}" > /dev/null; then
-                check_command "qemu-system-x86_64"
                 # Check whether the VM file exists
                 # 检查是否存在虚拟机文件
                 vm_file=`echo ${vmlist} | jq -r ".${2}.filename"`
@@ -317,7 +318,6 @@ start:
         # 自定义启动指定虚拟机
         if [ -n "$2" ]; then
             if echo ${vmlist} | jq -e ".${2}" > /dev/null; then
-                check_command "qemu-system-x86_64"
                 # Check whether the VM file exists
                 # 检查是否存在虚拟机文件
                 vm_file=`echo ${vmlist} | jq -r ".${2}.filename"`
@@ -407,7 +407,6 @@ status:
     "snapshot")
         # Vm snapshot management
         # 虚拟机快照管理
-        check_command "qemu-system-x86_64"
         case ${2} in
             "a")
                 # Adding a snapshot
@@ -416,7 +415,6 @@ status:
                     if echo ${vmlist} | jq -e ".${3}" > /dev/null; then
                         vm_file=`echo ${vmlist} | jq -r ".${3}.filename"`
                         vm_file_exits ${vm_file}
-                        check_command "qemu-img"
                         if [ -n "$4" ] ;then
                             qemu-img snapshot -c "${4}" "${HOME}/.vbn_vms/${vm_file}"
                             if [ $? -eq 0 ]; then
@@ -447,7 +445,6 @@ status:
                     if echo ${vmlist} | jq -e ".${3}" > /dev/null; then
                         vm_file=`echo ${vmlist} | jq -r ".${3}.filename"`
                         vm_file_exits ${vm_file}
-                        check_command "qemu-img"
                         if [ -n "$4" ] ;then
                             qemu-img snapshot -a "${4}" "${HOME}/.vbn_vms/${vm_file}"
                             if [ $? -eq 0 ]; then
@@ -478,7 +475,6 @@ status:
                     if echo ${vmlist} | jq -e ".${3}" > /dev/null; then
                         vm_file=`echo ${vmlist} | jq -r ".${3}.filename"`
                         vm_file_exits ${vm_file}
-                        check_command "qemu-img"
                         if [ -n "$4" ] ;then
                             qemu-img snapshot -d "${4}" "${HOME}/.vbn_vms/${vm_file}"
                             if [ $? -eq 0 ]; then
@@ -509,7 +505,6 @@ status:
                     if echo ${vmlist} | jq -e ".${3}" > /dev/null; then
                         vm_file=`echo ${vmlist} | jq -r ".${3}.filename"`
                         vm_file_exits ${vm_file}
-                        check_command "qemu-img"
                         qemu-img snapshot -l "${HOME}/.vbn_vms/${vm_file}"
                     else
                         echo -e "
@@ -552,7 +547,6 @@ prompt:
         ;;
     "update")
         # Update the vbn script
-        check_command "wget"
         if ! command -v "vbn" &> /dev/null; then
             echo -e "\033[33mvbn instruction path not found\033[0m"
             wget -O update_vbn_cache.sh --no-check-certificate -q ${github_proxy}${vbn_download_url}
