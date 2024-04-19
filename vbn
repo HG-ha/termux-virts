@@ -16,7 +16,7 @@ set -e
 # ADAPTS to termux and other linux
 # 适配termux和其他Linux
 if [ ! -z $TERMUX_VERSION ]; then
-    for cmd in qemu-system-x86_64 jq wget; do
+    for cmd in qemu-system-x86_64-headless jq wget; do
         if ! command -v $cmd &> /dev/null; then
             pkg install ${cmd} -y
         fi
@@ -25,21 +25,21 @@ else
     distro=$(cat /etc/os-release | grep '^ID=' | cut -d'=' -f2 | tr -d '"')
     case "$distro" in
         "ubuntu" | "debian")
-            for cmd in qemu-system-x86_64 jq wget; do
+            for cmd in qemu jq wget; do
                 if ! command -v $cmd &> /dev/null; then
                     apt install ${cmd} -y
                 fi
             done
             ;;
         "centos" | "rhel")
-            for cmd in qemu-system-x86_64 jq wget; do
+            for cmd in qemu jq wget; do
                 if ! command -v $cmd &> /dev/null; then
                     yum install ${cmd} -y
                 fi
             done
             ;;
         "alpine")
-            for cmd in qemu-system-x86_64 jq wget; do
+            for cmd in qemu jq wget; do
                 if ! command -v $cmd &> /dev/null; then
                     apk add ${cmd}
                 fi
