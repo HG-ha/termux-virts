@@ -30,7 +30,7 @@ else
             package_manager="apk add"
             ;;
         *)
-            echo "未知的 Linux 发行版。"
+            echo "For Linux that is not supported, please manually install dependencies: jq, wget"
             exit 1
             ;;
     esac
@@ -225,6 +225,9 @@ case ${1} in
             echo -e "
 Enter the virtual machine you want to install
 请输入要安装的虚拟机
+
+install:
+    vbn install [name]
 "
         fi
         ;;
@@ -243,6 +246,9 @@ Enter the virtual machine you want to install
             echo -e "
 Specify the virtual machine you want to view
 请指定要查看的虚拟机
+
+info:
+    vbn info [name]
 "
         fi
         ;;
@@ -270,6 +276,9 @@ Specify the virtual machine you want to view
             echo -e "
 Specify the virtual machine you want to start
 请指定要启动的虚拟机
+
+start:
+    vbn start [name]
 "
         fi
         ;;
@@ -302,14 +311,15 @@ Specify the virtual machine you want to start
             echo -e "
 Specify the virtual machine you want to stop
 请指定要停止的虚拟机
+
+stop:
+    vbn stop [name]
 "
         fi
         ;;
     "status")
-        # Kill the VM process directly. Some operations may not be saved
-        # 直接杀死虚拟机进程，有些操作可能会无法保存
-        # Shut down the virtual machine as normally as possible
-        # 尽可能在虚拟机内正常关机
+        # Obtain the running status of the VM
+        # 获取虚拟机运行状态
         if [ -n "$2" ] ;then
             if echo ${vmlist} | jq -e ".${2}" > /dev/null; then
                 vm_file=`echo ${vmlist} | jq -r ".${2}.filename"`
@@ -329,6 +339,9 @@ Specify the virtual machine you want to stop
             echo -e "
 Specify the virtual machine you want to view
 请指定要查看的虚拟机
+
+status:
+    vbn status [name]
 "
         fi
         ;;
@@ -450,12 +463,35 @@ Specify the virtual machine you want to view
         "
                 fi
                 ;;
-            *)
-                :
+            help|*)
+                echo "
+prompt:
+
+    a: Adding a snapshot
+       为虚拟机添加快照
+
+       vbn snapshot a [name|虚拟机名称] [snapshot_name|快照名称]
+    
+    r: Restore a VM to a snapshot
+       将虚拟机恢复到指定快照
+
+       vbn snapshot r [name|虚拟机名称] [snapshot_name|快照名称]
+    
+    d: Deleting a Snapshot
+       删除虚拟机的某个快照
+
+       vbn snapshot d [name|虚拟机名称] [snapshot_name|快照名称]
+    
+    l: View VM snapshots
+       查看虚拟机所有快照
+
+       vbn snapshot l [name|虚拟机名称]
+"
                 ;;
         esac
         ;;
     "update")
+        # Update the vbn script
         check_command "wget"
         if ! command -v "vbn" &> /dev/null; then
             echo -e "\033[33mvbn instruction path not found\033[0m"
@@ -478,7 +514,51 @@ Specify the virtual machine you want to view
     "version")
         echo "Version: 0.1"
         ;;
-    *)
-        echo "It's something else."
+    help|*)
+        echo "
+Personal qemu virtual machine management tool written by Yiming.
+
+usage: vbn [option] [params...]
+
+    params:
+
+        list    : Lists all virtual machines
+                  列出所有虚拟机
+        
+        install : Install the specified VM
+                  安装指定虚拟机
+
+                  usage: vbn install [name|虚拟机名称]
+
+        info    : View all information about a specified VM
+                  查看指定虚拟机的所有信息
+                
+                  usage: vbn info [name|虚拟机名称]
+        
+        start   : Start the specified VM
+                  启动指定虚拟机
+
+                  usage: vbn start [name|虚拟机名称]
+        
+        stop    : Kill a virtual machine
+                  杀死虚拟机
+
+                  usage: vbn stop [name|虚拟机名称]
+        
+        status  : Obtain the running status of the VM
+                  获取虚拟机运行状态
+
+                  usage: vbn stauts [name|虚拟机名称]
+
+        update  : Update the vbn script
+                  更新vbn脚本
+                  usage: vbn stauts
+        
+        snapshot: Create a snapshot for a VM
+                  为虚拟机添加快照
+
+                  usage: vbn snapshot [a|r|d|l]
+                  help : vbn snapshot help
+"
         ;;
 esac
