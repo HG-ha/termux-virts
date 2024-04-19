@@ -231,6 +231,32 @@ install:
 "
         fi
         ;;
+    "del")
+        # Deleting a VM
+        # 删除指定虚拟机
+        if [ -n "$2" ]; then
+            if echo ${vmlist} | jq -e ".${2}" > /dev/null; then
+                # Check whether the VM file exists
+                # 检查是否存在虚拟机文件
+                vm_file=`echo ${vmlist} | jq -r ".${2}.filename"`
+                vm_file_exits ${vm_file}
+                rm -f ${HOME}/.vbn_vms/${vm_file}
+                echo -e "\033[32mThe VM is deleted successfully\033[0m"
+            else
+                echo -e "
+\033[33mThe VM is out of range
+虚拟机不在支持范围内\033[0m"
+            fi
+        else
+            echo -e "
+Specify the VM to be deleted
+请指定要删除的虚拟机
+
+start:
+    vbn del [name]
+"
+        fi
+        ;;
     "info")
         # View all information about a specified VM
         # 查看指定虚拟机的全部信息
@@ -560,6 +586,11 @@ usage: vbn [option] [params...]
                   安装指定虚拟机
 
                   usage: vbn install [name|虚拟机名称]
+        
+        del     : Specify the VM to be deleted
+                  删除指定虚拟机
+                
+                  usage: vbn del [name|虚拟机名称]
 
         info    : View all information about a specified VM
                   查看指定虚拟机的所有信息
