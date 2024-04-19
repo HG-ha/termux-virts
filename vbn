@@ -114,8 +114,8 @@ vmlist='{
         "download": "wget -O ${HOME}/.vbn_vms/docker_alpine-3.18.0-x86_64.qcow2 --no-check-certificate https://onw.cc/1drv.ms.php?url=https://1drv.ms/u/s\\!AkrWd-0ZuuopwyTB8wIE0US9-WiP",
         "notes": "安装了docker的alpine3.18\n\n\t默认暴露22端口到宿主机18022端口\n\t外部ssh命令: ssh root@127.0.0.1 -p 18022",
         "hostfwd": "tcp::18022-:22",
-        "default_command": "qemu-system-x86_64 -m 1G -nographic -netdev user,id=n1,hostfwd=tcp::18022-:22 -device virtio-net,netdev=n1 -hda ${HOME}/.vbn_vms/alpine-3.18.0-x86_64.qcow2",
-        "custom_command": "qemu-system-x86_64 -hda ${HOME}/.vbn_vms/alpine-3.18.0-x86_64.qcow2 "
+        "default_command": "qemu-system-x86_64 -m 1G -nographic -netdev user,id=n1,hostfwd=tcp::18022-:22 -device virtio-net,netdev=n1 -hda ${HOME}/.vbn_vms/docker_alpine-3.18.0-x86_64.qcow2",
+        "custom_command": "qemu-system-x86_64 -hda ${HOME}/.vbn_vms/docker_alpine-3.18.0-x86_64.qcow2 "
     },"bt_centos7":{
         "iso": "CentOS-7-x86_64-Everything-2009.iso",
         "filename": "bt_centos7-x86_64-2009.qcow2",
