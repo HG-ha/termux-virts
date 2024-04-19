@@ -495,21 +495,23 @@ prompt:
         check_command "wget"
         if ! command -v "vbn" &> /dev/null; then
             echo -e "\033[33mvbn instruction path not found\033[0m"
-            exit 1
-        fi
-        echo -e "\033[32mDownload new script\033[0m"
-        wget -O update_vbn_cache.sh --no-check-certificate -q ${github_proxy}${vbn_download_url}
-        vbn_path=`command -v "vbn"`
-        if diff -q update_vbn_cache.sh "${vbn_path}" >/dev/null; then
-            echo -e "\033[32mNo updated content, exit...\033[0m"
+            wget -O update_vbn_cache.sh --no-check-certificate -q ${github_proxy}${vbn_download_url}
+            echo -e "Script download complete: "`pwd`'update_vbn_cache.sh'
+            echo -e "Install it manually to the specified location"
             exit 0
         else
-            mv update_vbn_cache.sh ${vbn_path}
-            chmod +x ${vbn_path}
-            echo -e "\033[32mupdate completed\033[0m"
-            # 在这里继续执行其他操作
+            echo -e "\033[32mDownload new script\033[0m"
+            wget -O update_vbn_cache.sh --no-check-certificate -q ${github_proxy}${vbn_download_url}
+            vbn_path=`command -v "vbn"`
+            if diff -q update_vbn_cache.sh "${vbn_path}" >/dev/null; then
+                echo -e "\033[32mNo updated content, exit...\033[0m"
+                exit 0
+            else
+                mv update_vbn_cache.sh ${vbn_path}
+                chmod +x ${vbn_path}
+                echo -e "\033[32mupdate completed\033[0m"
+            fi
         fi
-        # echo ${diff_res}
         ;;
     "version")
         echo "Version: 0.1"
