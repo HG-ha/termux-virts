@@ -82,7 +82,7 @@ vmlist='{
         "username": "root",
         "password": "123456",
         "download": "wget -O ${HOME}/.vbn_vms/alpine-3.19.1-x86_64.qcow2 --no-check-certificate https://onw.cc/1drv.ms.php?url=https://1drv.ms/u/s\\!AkrWd-0ZuuopwxmgM-RJhj4G3KH9",
-        "notes": "在该版本中安装docker似乎有问题\n\t如有docker需求建议3.18版本\n\n\t若要上网请修改dns文件: /etc/resolv.conf\n\n\t默认暴露22端口到宿主机18022端口\n\t外部ssh命令: ssh root@127.0.0.1 -p 18022",
+        "notes": "纯净的alpine3.19系统\n\n\t默认暴露22端口到宿主机18022端口\n\t外部ssh命令: ssh root@127.0.0.1 -p 18022",
         "hostfwd": "tcp::18022-:22",
         "default_command": "qemu-system-x86_64 -m 1G -nographic -netdev user,id=n1,hostfwd=tcp::18022-:22 -device virtio-net,netdev=n1 -hda ${HOME}/.vbn_vms/alpine-3.19.1-x86_64.qcow2",
         "custom_command": "qemu-system-x86_64 -hda ${HOME}/.vbn_vms/alpine-3.19.1-x86_64.qcow2 "
@@ -97,7 +97,22 @@ vmlist='{
         "username": "root",
         "password": "alpine",
         "download": "wget -O ${HOME}/.vbn_vms/alpine-3.18.0-x86_64.qcow2 --no-check-certificate https://onw.cc/1drv.ms.php?url=https://1drv.ms/u/s\\!AkrWd-0ZuuopwxpjDnxCLFc9rDx3",
-        "notes": "若要上网请修改dns文件/etc/resolv.conf\n\n\t默认暴露22端口到宿主机18022端口\n\t外部ssh命令: ssh root@127.0.0.1 -p 18022",
+        "notes": "纯净的alpine3.18系统\n\n\t默认暴露22端口到宿主机18022端口\n\t外部ssh命令: ssh root@127.0.0.1 -p 18022",
+        "hostfwd": "tcp::18022-:22",
+        "default_command": "qemu-system-x86_64 -m 1G -nographic -netdev user,id=n1,hostfwd=tcp::18022-:22 -device virtio-net,netdev=n1 -hda ${HOME}/.vbn_vms/alpine-3.18.0-x86_64.qcow2",
+        "custom_command": "qemu-system-x86_64 -hda ${HOME}/.vbn_vms/alpine-3.18.0-x86_64.qcow2 "
+    },"docker_alpine318":{
+        "iso": "alpine-virt-3.18.0-x86_64.iso",
+        "filename": "alpine-3.18.0-x86_64.qcow2",
+        "install": "default, docker",
+        "installed_by": "Yi ming",
+        "allocation_size": "40G",
+        "actual_size": "368M",
+        "format": "qcow2",
+        "username": "root",
+        "password": "alpine",
+        "download": "wget -O ${HOME}/.vbn_vms/alpine-3.18.0-x86_64.qcow2 --no-check-certificate https://onw.cc/1drv.ms.php?url=https://1drv.ms/u/s\\!AkrWd-0ZuuopwyTB8wIE0US9-WiP",
+        "notes": "安装了docker的alpine3.18\n\n\t默认暴露22端口到宿主机18022端口\n\t外部ssh命令: ssh root@127.0.0.1 -p 18022",
         "hostfwd": "tcp::18022-:22",
         "default_command": "qemu-system-x86_64 -m 1G -nographic -netdev user,id=n1,hostfwd=tcp::18022-:22 -device virtio-net,netdev=n1 -hda ${HOME}/.vbn_vms/alpine-3.18.0-x86_64.qcow2",
         "custom_command": "qemu-system-x86_64 -hda ${HOME}/.vbn_vms/alpine-3.18.0-x86_64.qcow2 "
