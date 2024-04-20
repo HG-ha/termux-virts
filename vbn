@@ -115,7 +115,8 @@ vmlist='{
         "notes": "安装了docker的alpine3.18\n\n\t默认暴露22端口到宿主机18022端口\n\t外部ssh命令: ssh root@127.0.0.1 -p 18022",
         "hostfwd": "tcp::18022-:22",
         "default_command": "qemu-system-x86_64 -m 1G -nographic -netdev user,id=n1,hostfwd=tcp::18022-:22 -device virtio-net,netdev=n1 -hda ${HOME}/.vbn_vms/docker_alpine-3.18.0-x86_64.qcow2",
-        "custom_command": "qemu-system-x86_64 -hda ${HOME}/.vbn_vms/docker_alpine-3.18.0-x86_64.qcow2 "},"qwen-api_alpine318":{
+        "custom_command": "qemu-system-x86_64 -hda ${HOME}/.vbn_vms/docker_alpine-3.18.0-x86_64.qcow2 "},
+"qwen-api_alpine318":{
         "iso": "alpine-virt-3.18.0-x86_64.iso",
         "filename": "qwen-api_alpine-3.18.0-x86_64.qcow2",
         "install": "default, qwen-free-api",
