@@ -116,9 +116,9 @@ vmlist='{
         "hostfwd": "tcp::18022-:22",
         "default_command": "qemu-system-x86_64 -m 1G -nographic -netdev user,id=n1,hostfwd=tcp::18022-:22 -device virtio-net,netdev=n1 -hda ${HOME}/.vbn_vms/docker_alpine-3.18.0-x86_64.qcow2",
         "custom_command": "qemu-system-x86_64 -hda ${HOME}/.vbn_vms/docker_alpine-3.18.0-x86_64.qcow2 "
-    },"qwen-api_alpine318":{
+    },"qwenapi_alpine318":{
         "iso": "alpine-virt-3.18.0-x86_64.iso",
-        "filename":"qwen-api_alpine-3.18.0-x86_64.qcow2",
+        "filename":"qwenapi_alpine-3.18.0-x86_64.qcow2",
         "install": "default, qwen-free-api",
         "installed_by": "Yi ming",
         "allocation_size": "40G",
@@ -129,8 +129,8 @@ vmlist='{
         "download": "wget -O ${HOME}/.vbn_vms/qwen-api_alpine-3.18.0-x86_64.qcow2 --no-check-certificate https://onw.cc/1drv.ms.php?url=https://1drv.ms/u/s\\!AkrWd-0ZuuopwyYkkMmgMbaqqorC",
         "notes": "部署了通义千问api的alpine3.18\n\n\t接口文档：https://github.com/LLM-Red-Team/qwen-free-api\n\n\t通义千问外部接口：http://127.0.0.1:18000\n\n\t外部ssh命令: ssh root@127.0.0.1 -p 18022",
         "hostfwd": "tcp::18022-:22,tcp::18000-:8000",
-        "default_command": "qemu-system-x86_64 -m 1G -nographic -netdev user,id=n1,hostfwd=tcp::18022-:22,hostfwd=tcp::18000-:8000 -device virtio-net,netdev=n1 -hda ${HOME}/.vbn_vms/qwen-api_alpine-3.18.0-x86_64.qcow2",
-        "custom_command": "qemu-system-x86_64 -hda ${HOME}/.vbn_vms/qwen-api_alpine-3.18.0-x86_64.qcow2 "
+        "default_command": "qemu-system-x86_64 -m 1G -nographic -netdev user,id=n1,hostfwd=tcp::18022-:22,hostfwd=tcp::18000-:8000 -device virtio-net,netdev=n1 -hda ${HOME}/.vbn_vms/qwenapi_alpine-3.18.0-x86_64.qcow2",
+        "custom_command": "qemu-system-x86_64 -hda ${HOME}/.vbn_vms/qwenapi_alpine-3.18.0-x86_64.qcow2 "
     },"bt_centos7":{
         "iso": "CentOS-7-x86_64-Everything-2009.iso",
         "filename": "bt_centos7-x86_64-2009.qcow2",
