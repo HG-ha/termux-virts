@@ -36,7 +36,7 @@ check_command() {
                 for cmd in "${commands[@]}"; do
                     if ! command -v ${cmd} &> /dev/null; then
                         yum install epel-release -y
-                        yum install qemu-system-x86.x86_64 qemu-img.x86_64 jq wget -y
+                        yum install qemu-kvm qemu-system-x86.x86_64 qemu-img.x86_64 jq wget -y
                         exit 1
                     fi
                 done
