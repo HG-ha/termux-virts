@@ -31,7 +31,8 @@ check_command() {
                 ;;
             "centos" | "rhel")
                 if ! command -v qemu-system-x86_64 &> /dev/null; then
-                    echo "Please manually install qemu-system-x86 64 and then use it"
+                    yum install epel-release -y
+                    yum install qemu-system-x86.x86_64 qemu-img.x86_64 -y
                     exit 1
                 fi
                 ;;
