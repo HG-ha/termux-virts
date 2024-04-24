@@ -16,10 +16,13 @@ set -e
 # ADAPTS to termux and other linux
 # 适配termux和其他Linux
 check_command() {
+    commands=("qemu-system-x86_64" "jq" "qemu-img" "wget")
     if [ ! -z $TERMUX_VERSION ]; then
-        if ! command -v qemu-system-x86_64 &> /dev/null; then
-            pkg install qemu-system-x86-64-headless qemu-utils jq wget -y
-        fi
+        for cmd in "${commands[@]}"; do
+            if ! command -v ${cmd} &> /dev/null; then
+                pkg install qemu-system-x86-64-headless qemu-utils jq wget -y
+            fi
+        done
     else
         distro=$(cat /etc/os-release | grep '^ID=' | cut -d'=' -f2 | tr -d '"')
         case "$distro" in
@@ -30,11 +33,13 @@ check_command() {
                 fi
                 ;;
             "centos" | "rhel")
-                if ! command -v qemu-system-x86_64 &> /dev/null; then
-                    yum install epel-release -y
-                    yum install qemu-system-x86.x86_64 qemu-img.x86_64 jq -y
-                    exit 1
-                fi
+                for cmd in "${commands[@]}"; do
+                    if ! command -v ${cmd} &> /dev/null; then
+                        yum install epel-release -y
+                        yum install qemu-system-x86.x86_64 qemu-img.x86_64 jq wget -y
+                        exit 1
+                    fi
+                done
                 ;;
             "alpine")
                 if ! command -v qemu-system-x86_64 &> /dev/null; then
