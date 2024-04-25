@@ -36,7 +36,6 @@ chmod +x /usr/bin/vbn
     密码：123456
     环境配置：初始化环境，无任何操作
     备注：建议使用vnc进行连接，不要直接输出界面到当前termux终端，否则可能启动失败
-    推荐启动命令：qemu-system-x86_64 -m 1G -hda centos7-x86_64-2009.qcow2 -netdev user,id=n1,hostfwd=tcp::18022-:22 -device virtio-net,netdev=n1
    ```
 2. alpine-3.19.1-x86_64.qcow2
    ```
@@ -49,7 +48,6 @@ chmod +x /usr/bin/vbn
     密码：123456
     环境配置：已配置官方源，网卡dhcp模式
     备注：
-    推荐启动命令：qemu-system-x86_64 -m 1G -hda alpine-3.19.1-x86_64.qcow2 -nographic -netdev user,id=n1,hostfwd=tcp::18022-:22 -device virtio-net,netdev=n1
    ```
 3. alpine-3.18.0-x86_64.qcow2
    ```
@@ -62,7 +60,6 @@ chmod +x /usr/bin/vbn
     密码：alpine
     环境配置：已配置官方源，网卡dhcp模式
     备注：
-    推荐启动命令：qemu-system-x86_64 -m 1G -hda alpine-3.19.1-x86_64.qcow2 -nographic -netdev user,id=n1,hostfwd=tcp::18022-:22 -device virtio-net,netdev=n1
    ```
 4. bt_centos7-x86_64-2009.qcow2
    ```
@@ -76,9 +73,8 @@ chmod +x /usr/bin/vbn
     虚拟机外部面板地址: http://127.0.0.1:25479/ed978faa
     username: yiming
     password: yiming
-    环境配置：初始化环境，无任何操作
+    环境配置：安装了宝塔面板8.0.6
     备注：建议使用vnc进行连接，不要直接输出界面到当前termux终端，否则可能启动失败。开机后使用bt 3命令运行宝塔
-    推荐启动命令：qemu-system-x86_64 -m 1G -hda bt_centos7-x86_64-2009.qcow2 -netdev user,id=n1,hostfwd=tcp::18022-:22,hostfwd=tcp::25479-:25479 -device virtio-net,netdev=n1
    ```
 5. bt_alpine-3.18.0-x86_64.qcow2
    ```
@@ -92,7 +88,7 @@ chmod +x /usr/bin/vbn
     内网宝塔面板地址: http://127.0.0.1:11306/eaeab87a
     宝塔username: oqlsnrhi
     宝塔password: 71e1f417
-    环境配置：已配置官方源，网卡dhcp模式
+    环境配置：安装了宝塔面板8.0.6
     备注：开机后使用bt 3命令运行宝塔，若要在该版本上安装docker，使用命令：apk add docker docker-compose
    ```
 6. docker_alpine-3.18.0-x86_64.qcow2
@@ -106,7 +102,6 @@ chmod +x /usr/bin/vbn
     密码：alpine
     环境配置：已配置官方源，网卡dhcp模式，安装了docker
     备注：
-    推荐启动命令：qemu-system-x86_64 -m 1G -hda alpine-3.19.1-x86_64.qcow2 -nographic -netdev user,id=n1,hostfwd=tcp::18022-:22 -device virtio-net,netdev=n1
    ```
 7. qwenapi_alpine-3.18.0-x86_64.qcow2
    ```
@@ -119,5 +114,4 @@ chmod +x /usr/bin/vbn
     密码：alpine
     环境配置：已配置官方源，网卡dhcp模式，安装了通义千问API，API文档：https://github.com/LLM-Red-Team/qwen-free-api
     备注：
-    推荐启动命令：qemu-system-x86_64 -m 1G -hda alpine-3.19.1-x86_64.qcow2 -nographic -netdev user,id=n1,hostfwd=tcp::18022-:22 -device virtio-net,netdev=n1
    ```
