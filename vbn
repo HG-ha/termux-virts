@@ -345,7 +345,7 @@ info:
                 vm_file=`echo ${vmlist} | jq -r ".${2}.filename"`
                 vm_file_exits ${vm_file}
                 start_vm=`echo ${vmlist} | jq -r ".${2}.default_command"`
-                if [ ! -z "$3" -a $3 = "-D" ]; then
+                if [ ! -z "$3" -a "$3" = "-D" ]; then
                     eval ${start_vm} &> /dev/null &
                 else
                     eval ${start_vm}
