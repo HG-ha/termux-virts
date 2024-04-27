@@ -120,7 +120,7 @@ chmod +x /usr/bin/vbn
     使用镜像：kali nethunter-rootless 2024.1
     软件包：
     系统设计容量：
-    实际大小：11G
+    实际大小：11G（下载3.1G）
     语言：
     用户名：
     密码：
