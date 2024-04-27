@@ -169,6 +169,21 @@ vmlist='{
         "hostfwd": "tcp::18022-:22, tcp::11306-:11306",
         "default_command": "qemu-system-x86_64 -m 1G -nographic -netdev user,id=n1,hostfwd=tcp::18022-:22,hostfwd=tcp::11306-:11306 -device virtio-net,netdev=n1 -hda ${HOME}/.vbn_vms/bt_alpine-3.18.0-x86_64.qcow2",
         "custom_command": "qemu-system-x86_64 -hda ${HOME}/.vbn_vms/bt_alpine-3.18.0-x86_64.qcow2 "
+    },"desk_centos7":{
+        "iso": "CentOS-7-x86_64-Everything-2009.iso",
+        "filename": "desk_centos7-x86_64-2009.qcow2",
+        "install": "default, GNOME, xrdp, vnc",
+        "installed_by": "Yi ming",
+        "allocation_size": "40G",
+        "actual_size": "3.7G",
+        "format": "qcow2",
+        "username": "root",
+        "password": "123456",
+        "download": "wget -O ${HOME}/.vbn_vms/desk_centos7-x86_64-2009.qcow2 --no-check-certificate https://onw.cc/1drv.ms.php?url=https://1drv.ms/u/s\\!AkrWd-0ZuuopwyfvyaZ9zcbgVJM3",
+        "notes": "安装了GNOME桌面和xrdp的centos7\n\n\t请使用vnc、rdp、ssh连接\n\t在字符模式下界面将无法正常显示\n\n\t默认vnc方式启动\n\n\t若要上网请修改dns文件/etc/resolv.conf\n\n\trdp端口: 13389\n\n\t外部ssh命令: ssh root@127.0.0.1 -p 18022",
+        "hostfwd": "tcp::18022-:22, tcp::13389-:3389, udp::13389-:3389",
+        "default_command": "qemu-system-x86_64 -m 2G -smp 2 -netdev user,id=n1,hostfwd=tcp::18022-:22,hostfwd=tcp::13389-:3389,hostfwd=udp::13389-:3389 -device virtio-net,netdev=n1 -hda ${HOME}/.vbn_vms/desk_centos7-x86_64-2009.qcow2",
+        "custom_command": "qemu-system-x86_64 -hda ${HOME}/.vbn_vms/desk_centos7-x86_64-2009.qcow2 "
     }
 }'
 
