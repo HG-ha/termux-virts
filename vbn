@@ -11,10 +11,6 @@
 # QQ Group: 376957298                                                 #
 #######################################################################
 
-# Exit immediately if an error occurs
-# 有任何错误直接退出
-set -e
-
 # ADAPTS to termux and other linux
 # 适配termux和其他Linux
 check_command() {
