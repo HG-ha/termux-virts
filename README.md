@@ -115,3 +115,15 @@ chmod +x /usr/bin/vbn
     环境配置：已配置官方源，网卡dhcp模式，安装了通义千问API，API文档：https://github.com/LLM-Red-Team/qwen-free-api
     备注：
    ```
+8. kali（官方Termux支持）
+   ```
+    使用镜像：kali nethunter-rootless 2024.1
+    软件包：
+    系统设计容量：
+    实际大小：11G
+    语言：
+    用户名：
+    密码：
+    环境配置：
+    备注：官方Linux，2024.1版本, 为proot环境, 无法访问init（安卓限制）
+   ```
