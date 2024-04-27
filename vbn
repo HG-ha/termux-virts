@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #######################################################################
 # Script Name: vbn                                                    #
 # Description: It is used to manage VMS.                              #
