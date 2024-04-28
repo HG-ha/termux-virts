@@ -367,8 +367,7 @@ info:
                         echo -e "\033[33mNo VM is installed\033[0m"
                         exit 1
                     else
-                        rm -rf "${HOME}/kali-arm64"
-                        echo -e "\033[32mThe VM is deleted successfully\033[0m"
+                        nh -r
                     fi
                 else
                     vm_file=`echo ${vmlist} | jq -r ".${2}.filename"`
