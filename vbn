@@ -175,7 +175,7 @@ vmlist='{
         "format": "",
         "username": "",
         "password": "",
-        "download": "wget -O ${HOME}/kali-arm64.tgz --no-check-certificate https://onw.cc/1drv.ms.php?url=https://1drv.ms/u/s\\!AkrWd-0Zuuopwyhxlpya4jcVZh6R && tar -zxf ${HOME}/kali-arm64.tgz && rm -f ${HOME}/kali-arm64.tgz && wget -O $PREFIX/bin/nethunter --no-check-certificate https://onw.cc/1drv.ms.php?url=https://1drv.ms/u/s\\!AkrWd-0Zuuopwyn-zSz0k3okLQMA && chmod +x PREFIX/bin/nethunter",
+        "download": "wget -O ${HOME}/kali-arm64.tgz --no-check-certificate https://onw.cc/1drv.ms.php?url=https://1drv.ms/u/s\\!AkrWd-0Zuuopwyhxlpya4jcVZh6R && tar -zxf ${HOME}/kali-arm64.tgz && rm -f ${HOME}/kali-arm64.tgz && wget -O $PREFIX/bin/nethunter --no-check-certificate https://onw.cc/1drv.ms.php?url=https://1drv.ms/u/s\\!AkrWd-0Zuuopwyn-zSz0k3okLQMA && chmod +x $PREFIX/bin/nethunter && cp $PREFIX/bin/nethunter $PREFIX/bin/nh",
         "notes": "kali官方的Termux版本\n\n\t不支持快照等操作\n\t会在路径下生成kali-arm64目录\n用于存储kali环境\n\n\t文档: https://www.kali.org/docs/nethunter/nethunter-rootless",
         "hostfwd": "",
         "default_command": "nethunter -r",
