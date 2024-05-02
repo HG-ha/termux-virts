@@ -120,6 +120,21 @@ vmlist='{
         "hostfwd": "tcp::18022-:22",
         "default_command": "qemu-system-x86_64 -m 1G -nographic -netdev user,id=n1,hostfwd=tcp::18022-:22 -device virtio-net,netdev=n1 -hda ${HOME}/.vbn_vms/docker_alpine-3.18.0-x86_64.qcow2",
         "custom_command": "qemu-system-x86_64 -hda ${HOME}/.vbn_vms/docker_alpine-3.18.0-x86_64.qcow2 "
+    },"xiaoya":{
+        "iso": "alpine-virt-3.18.0-x86_64.iso",
+        "filename": "xiaoya.qcow2",
+        "install": "default, docker, xiaoya_alist",
+        "installed_by": "Yi ming",
+        "allocation_size": "40G",
+        "actual_size": "823M",
+        "format": "qcow2",
+        "username": "root",
+        "password": "alpine",
+        "download": "wget -O ${HOME}/.vbn_vms/xiaoya.qcow2 --no-check-certificate https://onw.cc/1drv.ms.php?url=https://1drv.ms/u/s\\!AkrWd-0ZuuopwypaG8RSAzDyxEwc",
+        "notes": "安装了xiaoya_alist，第一次使用需要配置token等\n启动或更新xiaoya：登陆后直接输入 xiaoya 并回车\n\t访问xiaoya：http://127.0.0.1:5678\n\t外部ssh命令: ssh root@127.0.0.1 -p 18022",
+        "hostfwd": "tcp::18022-:22, tcp::5678-:5678",
+        "default_command": "qemu-system-x86_64 -m 1G -nographic -netdev user,id=n1,hostfwd=tcp::18022-:22,hostfwd=tcp::5678-:5678 -device virtio-net,netdev=n1 -hda ${HOME}/.vbn_vms/xiaoya.qcow2",
+        "custom_command": "qemu-system-x86_64 -hda ${HOME}/.vbn_vms/xiaoya.qcow2 "
     },"qwenapi_alpine318":{
         "iso": "alpine-virt-3.18.0-x86_64.iso",
         "filename":"qwenapi_alpine-3.18.0-x86_64.qcow2",
