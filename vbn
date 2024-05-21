@@ -73,7 +73,7 @@ vmlist='{
         "download": "wget -O ${HOME}/.vbn_vms/centos7-x86_64-2009.qcow2 --no-check-certificate https://onw.cc/1drv.ms.php?url=https://1drv.ms/u/s\\!AkrWd-0ZuuopwxxuVncSv2WOkvUk",
         "notes": "请使用vnc或ssh连接\n\n\t在字符模式下界面将无法正常显示\n\t默认vnc方式启动\n\n\t若要上网请修改dns文件: /etc/resolv.conf\n\n\t默认暴露22端口到宿主机18022端口\n\t外部ssh命令: ssh root@127.0.0.1 -p 18022",
         "hostfwd": "tcp::18022-:22",
-        "default_command": "qemu-system-x86_64 -m 1G -netdev user,id=n1,hostfwd=tcp::18022-:22 -device virtio-net,netdev=n1 -hda ${HOME}/.vbn_vms/centos7-x86_64-2009.qcow2",
+        "default_command": "qemu-system-x86_64 -m 1G -smp 4 -netdev user,id=n1,hostfwd=tcp::18022-:22 -device virtio-net,netdev=n1 -hda ${HOME}/.vbn_vms/centos7-x86_64-2009.qcow2",
         "custom_command": "qemu-system-x86_64 -hda ${HOME}/.vbn_vms/centos7-x86_64-2009.qcow2 "
     },"alpine319":{
         "iso": "alpine-virt-3.19.1-x86_64.iso",
