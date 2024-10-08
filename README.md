@@ -5,7 +5,7 @@
 4. 其他Linux请先自行安装qemu、jq、wget命令，或等待后续适配
 5. 如需查看命令帮助，使用：vbn help
 6. 如果CPU资源分配有问题，可以试试taskset命令
-7. 单独下载虚拟机 https://1drv.ms/f/c/29eaba19ed77d64a/EkrWd-0ZuuoggCmWIQAAAAABlyxgdnqTJ9t4IlBd7AuCdw（虚拟机文件放到 ~/.vbn/ 路径下）
+7. 单独下载虚拟机 https://1drv.ms/f/c/29eaba19ed77d64a/EkrWd-0ZuuoggCmWIQAAAAABlyxgdnqTJ9t4IlBd7AuCdw 虚拟机文件放到 ~/.vbn/ 路径下
 
 ### 正确使用操作
 1. 安装vbn
